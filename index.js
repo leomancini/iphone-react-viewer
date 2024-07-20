@@ -13,11 +13,11 @@ const importDeviceImages = (device, statusBarColor) => {
   };
 
   switch (device) {
-    case "iPhone 11 Pro":
+    case "iPhone 15 Pro":
       return {
-        DeviceImage: require(`${baseDevicePath}/iPhone 11 Pro/${filenames.DeviceImage}`),
-        StatusBarImage: require(`${baseDevicePath}/iPhone 11 Pro/${filenames.StatusBarImage}`),
-        DynamicIslandImage: require(`${baseDevicePath}/iPhone 11 Pro/${filenames.DynamicIslandImage}`),
+        DeviceImage: require(`${baseDevicePath}/iPhone 15 Pro/${filenames.DeviceImage}`),
+        StatusBarImage: require(`${baseDevicePath}/iPhone 15 Pro/${filenames.StatusBarImage}`),
+        DynamicIslandImage: require(`${baseDevicePath}/iPhone 15 Pro/${filenames.DynamicIslandImage}`),
       };
     default:
       return {

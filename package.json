@@ -1,6 +1,6 @@
 {
   "name": "iphone-react-viewer",
-  "version": "0.9.993",
+  "version": "0.9.994",
   "private": false,
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.24.7",
