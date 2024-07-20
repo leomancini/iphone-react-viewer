@@ -90,14 +90,14 @@ const HomeIndicator = styled.div`
   transform: translateX(-50%);
 `;
 
-module.exports = function Phone({
+const Phone = ({
   deviceType,
   liveClock,
   statusBarColor,
   homeIndicatorColor,
   contentBackgroundColor,
   children,
-}) {
+}) => {
   const phoneRef = useRef(null);
 
   const { DeviceImage, StatusBarImage, DynamicIslandImage } =
@@ -160,25 +160,35 @@ module.exports = function Phone({
       return `${formattedHours}:${formattedMinutes}`;
     };
 
-    if (live) {
-      return <Time>{formatTime(currentTime)}</Time>;
-    } else {
-      return <Time>9:41</Time>;
-    }
+    return React.createElement(
+      Time,
+      null,
+      live ? formatTime(currentTime) : "9:41"
+    );
   };
 
-  return (
-    <DeviceWrapper>
-      <Device ref={phoneRef} background={DeviceImage}>
-        <Screen contentBackgroundColor={contentBackgroundColor}>
-          <StatusBar background={StatusBarImage} color={statusBarColor}>
-            <DynamicIsland background={DynamicIslandImage} />
-            <Clock live={liveClock} />
-          </StatusBar>
-          <HomeIndicator color={homeIndicatorColor} />
-          {children}
-        </Screen>
-      </Device>
-    </DeviceWrapper>
+  return React.createElement(
+    DeviceWrapper,
+    null,
+    React.createElement(
+      Device,
+      { ref: phoneRef, background: DeviceImage },
+      React.createElement(
+        Screen,
+        { contentBackgroundColor },
+        React.createElement(
+          StatusBar,
+          { background: StatusBarImage, color: statusBarColor },
+          React.createElement(DynamicIsland, {
+            background: DynamicIslandImage,
+          }),
+          React.createElement(Clock, { live: liveClock })
+        ),
+        React.createElement(HomeIndicator, { color: homeIndicatorColor }),
+        children
+      )
+    )
   );
 };
+
+export default Phone;
