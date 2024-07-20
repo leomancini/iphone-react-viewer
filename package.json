@@ -1,6 +1,6 @@
 {
   "name": "iphone-react-viewer",
-  "version": "1.5.0",
+  "version": "1.8.0",
   "main": "dist.js",
   "private": false,
   "dependencies": {
@@ -15,10 +15,7 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "babel src.js -o dist.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "babel src.js --out-file dist.js"
   },
   "eslintConfig": {
     "extends": [
