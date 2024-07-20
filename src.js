@@ -161,34 +161,22 @@ const Phone = ({
       return `${formattedHours}:${formattedMinutes}`;
     };
 
-    return React.createElement(
-      Time,
-      null,
-      live ? formatTime(currentTime) : "9:41"
-    );
+    return <Time>{live ? formatTime(currentTime) : "9:41"}</Time>;
   };
 
-  return React.createElement(
-    DeviceWrapper,
-    null,
-    React.createElement(
-      Device,
-      { ref: phoneRef, $background: DeviceImage },
-      React.createElement(
-        Screen,
-        { $contentBackgroundColor: contentBackgroundColor },
-        React.createElement(
-          StatusBar,
-          { $background: StatusBarImage, $color: statusBarColor },
-          React.createElement(DynamicIsland, {
-            $background: DynamicIslandImage,
-          }),
-          React.createElement(Clock, { live: liveClock })
-        ),
-        React.createElement(HomeIndicator, { $color: homeIndicatorColor }),
-        children
-      )
-    )
+  return (
+    <DeviceWrapper>
+      <Device ref={phoneRef} $background={DeviceImage}>
+        <Screen $contentBackgroundColor={contentBackgroundColor}>
+          <StatusBar $background={StatusBarImage} $color={statusBarColor}>
+            <DynamicIsland $background={DynamicIslandImage} />
+            <Clock live={liveClock} />
+          </StatusBar>
+          {children}
+          <HomeIndicator $color={homeIndicatorColor} />
+        </Screen>
+      </Device>
+    </DeviceWrapper>
   );
 };
 
