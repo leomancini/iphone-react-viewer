@@ -90,7 +90,7 @@ const HomeIndicator = styled.div`
   transform: translateX(-50%);
 `;
 
-function Phone({
+module.exports = function Phone({
   deviceType,
   liveClock,
   statusBarColor,
@@ -181,6 +181,4 @@ function Phone({
       </Device>
     </DeviceWrapper>
   );
-}
-
-export default Phone;
+};
