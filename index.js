@@ -40,7 +40,7 @@ const Device = styled.div`
   position: relative;
   transform-origin: center;
   margin: 88px 0;
-  background-image: url(${(props) => props.background});
+  background-image: url(${(props) => props.$background});
   background-size: cover;
   background-position: center;
   display: flex;
@@ -51,7 +51,7 @@ const Device = styled.div`
 const Screen = styled.div`
   width: 393px;
   height: 852px;
-  background: ${(props) => props.contentBackgroundColor};
+  background: ${(props) => props.$contentBackgroundColor};
   border-radius: 56px;
   display: flex;
   flex-direction: column;
@@ -61,17 +61,17 @@ const Screen = styled.div`
 const StatusBar = styled.div`
   width: 393px;
   height: 54px;
-  background-image: url(${(props) => props.background});
+  background-image: url(${(props) => props.$background});
   background-size: 143px 54px;
   background-repeat: no-repeat;
   background-position: right;
-  color: ${(props) => (props.color === "white" ? "white" : "black")};
+  color: ${(props) => (props.$color === "white" ? "white" : "black")};
 `;
 
 const DynamicIsland = styled.div`
   width: 127px;
   height: 37px;
-  background-image: url(${(props) => props.background});
+  background-image: url(${(props) => props.$background});
   background-size: cover;
   position: absolute;
   top: 52px;
@@ -80,7 +80,8 @@ const DynamicIsland = styled.div`
 `;
 
 const HomeIndicator = styled.div`
-  background-color: ${(props) => (props.color === "white" ? "white" : "black")};
+  background-color: ${(props) =>
+    props.$color === "white" ? "white" : "black"};
   height: 5px;
   position: absolute;
   bottom: 48px;
@@ -88,6 +89,21 @@ const HomeIndicator = styled.div`
   left: 50%;
   border-radius: 2.5px;
   transform: translateX(-50%);
+`;
+
+const Time = styled.div`
+  color: white;
+  font-size: 17px;
+  position: absolute;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  top: 59px;
+  left: 66px;
+  letter-spacing: 0.5px;
+  width: 88px;
+  text-align: center;
+  color: inherit;
 `;
 
 const Phone = ({
@@ -126,21 +142,6 @@ const Phone = ({
   }, []);
 
   const Clock = ({ live }) => {
-    const Time = styled.div`
-      color: white;
-      font-size: 17px;
-      position: absolute;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, sans-serif;
-      font-weight: 500;
-      top: 59px;
-      left: 66px;
-      letter-spacing: 0.5px;
-      width: 88px;
-      text-align: center;
-      color: inherit;
-    `;
-
     const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
@@ -172,19 +173,19 @@ const Phone = ({
     null,
     React.createElement(
       Device,
-      { ref: phoneRef, background: DeviceImage },
+      { ref: phoneRef, $background: DeviceImage },
       React.createElement(
         Screen,
-        { contentBackgroundColor },
+        { $contentBackgroundColor: contentBackgroundColor },
         React.createElement(
           StatusBar,
-          { background: StatusBarImage, color: statusBarColor },
+          { $background: StatusBarImage, $color: statusBarColor },
           React.createElement(DynamicIsland, {
-            background: DynamicIslandImage,
+            $background: DynamicIslandImage,
           }),
           React.createElement(Clock, { live: liveClock })
         ),
-        React.createElement(HomeIndicator, { color: homeIndicatorColor }),
+        React.createElement(HomeIndicator, { $color: homeIndicatorColor }),
         children
       )
     )
